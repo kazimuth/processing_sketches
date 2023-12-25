@@ -72,6 +72,7 @@ class Boid {
     translate(position.x, position.y);
     rotate(theta);
     beginShape(TRIANGLES);
+    scale(3.0);
     vertex(0, -r * 2);
     vertex(-r, r * 2);
     vertex(r, r * 2);

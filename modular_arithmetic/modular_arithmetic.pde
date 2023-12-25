@@ -2,7 +2,12 @@ import peasy.*;
 
 PeasyCam cam;
 
+float delta;
+int perCycle;
+
 void setup() {
+  setPerCycle(5);
+
   size(1600, 1600, P3D);
   smooth(8);
   cam = new PeasyCam(this, 600);
@@ -14,8 +19,6 @@ void project(float source, PVector out) {
   out.z = -(source * scaleFactor) /2;
 }
 
-final float delta = 0.1;
-int perCycle = 5;
 final int cycles = 5;
 final float scaleFactor = 120;
 final float circleZ = scaleFactor * 0.75;
@@ -140,6 +143,11 @@ void draw() {
   drawSpiralPoints();
 
 }
+void setPerCycle(int n) {
+  perCycle = n;
+  delta = 2 * PI / n;
+}
+  
 
 void keyPressed() {
   if (key == 'c') {
@@ -148,9 +156,9 @@ void keyPressed() {
     drawSidePoints = !drawSidePoints;
   } else if (key == 'z') {
     if (perCycle > 1) {
-      perCycle -= 1;
+      setPerCycle(perCycle - 1);
     }
   } else if (key == 'x') {
-    perCycle += 1;
+    setPerCycle(perCycle + 1);
   }
 }
